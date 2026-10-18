@@ -1,0 +1,6 @@
+fastapi[standard]
+pymupdf
+pillow
+pytesseract
+python-multipart
+opencv-python-headless
