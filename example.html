@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PromptEdit — Example</title>
+  <style>
+    :root { color-scheme: light; --ink: #172033; --muted: #667085; --line: #e5e7eb; --panel: #ffffff; --bg: #f5f7fb; --accent: #315efb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 system-ui, -apple-system, Segoe UI, sans-serif; }
+    header { padding: 28px 20px; background: #101828; color: white; }
+    header .wrap, main { max-width: 1040px; margin: auto; }
+    header p { margin: 6px 0 0; color: #cbd5e1; }
+    main { padding: 28px 20px 48px; }
+    .notice { padding: 12px 14px; border: 1px solid #f4d38a; border-radius: 12px; background: #fff8e7; color: #754c00; margin-bottom: 22px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 18px #1018280a; }
+    .card h2 { font-size: 1rem; margin: 0; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+    .art { padding: 16px; }
+    .sample { min-height: 230px; display: grid; place-items: center; padding: 24px; border-radius: 10px; background: #e9eef7; }
+    .paper { width: min(100%, 330px); min-height: 185px; padding: 26px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #fffdf8; border: 1px solid #d8d1c4; box-shadow: 0 8px 22px #10182818; }
+    .eyebrow { font-size: .72rem; text-transform: uppercase; letter-spacing: .22em; color: #756b5d; }
+    .headline { margin: 12px 0 8px; font: 700 clamp(1.35rem, 3vw, 2rem)/1.05 Georgia, serif; color: #283e62; }
+    .sub { color: #746a5b; font-size: .9rem; }
+    .after .headline { color: #176b52; }
+    .prompt-box { margin-top: 22px; background: white; border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+    code { background: #eef2ff; color: #293b8f; padding: 3px 6px; border-radius: 6px; }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; }
+    button { border: 0; border-radius: 9px; background: var(--accent); color: white; font-weight: 650; padding: 10px 15px; cursor: pointer; }
+    button.secondary { background: #eef2f6; color: #344054; }
+    #status { color: var(--muted); font-size: .9rem; }
+    footer { margin-top: 24px; color: var(--muted); font-size: .9rem; }
+    @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <strong>PromptEdit</strong>
+      <p>First-version concept · prompt-based image and PDF text editing</p>
+    </div>
+  </header>
+  <main>
+    <div class="notice"><strong>Illustration only:</strong> these are mock preview panels, not actual AI-generated output or a screenshot from the application.</div>
+    <section class="grid" aria-label="Before and after example">
+      <article class="card">
+        <h2>Before</h2>
+        <div class="art">
+          <div class="sample">
+            <div class="paper">
+              <div class="eyebrow">A little celebration</div>
+              <div class="headline">SUMMER SALE</div>
+              <div class="sub">Special offers this weekend</div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="card">
+        <h2>After · illustrative target</h2>
+        <div class="art">
+          <div class="sample after">
+            <div class="paper">
+              <div class="eyebrow">A little celebration</div>
+              <div class="headline">WINTER SALE</div>
+              <div class="sub">Special offers this weekend</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="prompt-box">
+      <strong>Example instruction</strong>
+      <p><code>Replace "SUMMER SALE" with "WINTER SALE"</code></p>
+      <p>This page demonstrates the idea of a prompt-driven edit. It does not connect to a backend or change a real uploaded file.</p>
+      <div class="row">
+        <button id="show" type="button">Show example prompt</button>
+        <button id="reset" class="secondary" type="button">Reset status</button>
+        <span id="status" aria-live="polite">Ready for demonstration.</span>
+      </div>
+    </section>
+    <footer>PromptEdit prototype documentation example. Real results depend on OCR accuracy, font availability, and the background behind the edited text.</footer>
+  </main>
+  <script>
+    const status = document.getElementById('status');
+    document.getElementById('show').addEventListener('click', () => {
+      status.textContent = 'Demo prompt: replace “SUMMER SALE” with “WINTER SALE”. No file was edited.';
+    });
+    document.getElementById('reset').addEventListener('click', () => {
+      status.textContent = 'Ready for demonstration.';
+    });
+  </script>
+</body>
+</html>
